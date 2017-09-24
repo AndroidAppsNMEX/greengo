@@ -50,6 +50,7 @@ from (
             v_gps_latitude,
             v_gps_longitude
         from greengo.wrk_bookings_tmp
+         WHERE status <> 'CANCELLED'
         ) tmp1
     select transform (
       user_id,
