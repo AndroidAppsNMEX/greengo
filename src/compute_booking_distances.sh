@@ -22,7 +22,7 @@ echo "Moving schema to GCS..."
 gsutil cp ./schema.avsc gs://poc-data-greengo/schema_bookings.avsc
 
 echo "Running Hive Job and calculating distances..."
-gcloud dataproc jobs submit hive --cluster poc-data-greengo -f /home/hahavelka/greengo/src/SQL/WRK_BOOKINGS_DISTANCE.hql --params=RUN_DATE=${RUN_DATE}
+gcloud dataproc jobs submit hive --cluster poc-data-greengo --region europe-west1 -f /home/hahavelka/greengo/src/SQL/WRK_BOOKINGS_DISTANCE.hql --params=RUN_DATE=${RUN_DATE}
 
 echo "Loading back to BigQuery..."
 bq load --replace --source_format=AVRO poc_analytics.WRK_BOOKINGS_DISTANCE\$${RUN_DATE_NO_DASH} gs://poc-data-greengo/greengo/wrk_bookings_distance/booking_date=${RUN_DATE}/*
