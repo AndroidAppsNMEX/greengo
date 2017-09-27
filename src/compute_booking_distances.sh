@@ -12,6 +12,12 @@ bq extract --destination_format=AVRO poc_analytics.WRK_BOOKINGS\$${RUN_DATE_NO_D
 echo "Moving to GCS..."
 gsutil cp gs://poc-data-greengo/greengo/wrk_bookings/00000000000000_0 ./
 
+#Piece of code for the init actions
+#echo "Downloading python and copying it in the HDFS FS..."
+#gsutil cp ./distance
+#gsutil cp gs://poc-data-greengo/distance.py ./
+#hdfs dfs -put -f ./distance.py /tmp/
+
 echo "Downloading avro-tools..."
 wget http://apache.uvigo.es/avro/avro-1.8.2/java/avro-tools-1.8.2.jar
 
